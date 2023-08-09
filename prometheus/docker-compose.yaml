@@ -7,6 +7,8 @@ services:
     volumes:
       - ./data:/prometheus/data
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - komfovent
   komfovent:
     image: wokim/komfovent-c6-metrics
     environment:

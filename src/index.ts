@@ -46,6 +46,35 @@ import {
 
 const app = express();
 
+app.get('/info', async (req, res) => {
+  try {
+    const client = new ModbusRTU();
+    await client.connectTCP(process.env.MODBUS_TCP_IP || '192.168.1.26', {
+      port: parseInt(process.env.MODBUS_TCP_PORT || '502', 10),
+    });
+
+    // set the client's unit id (default: 1)
+    client.setID(1);
+    client.setTimeout(1000);
+
+    const status = await getStatus(client);
+    const flow = await getFlow(client);
+    const monitor = await getMonitorInfo(client);
+    const panel = await getPanelInfo(client);
+    await new Promise<void>((resolve) => client.close(resolve));
+
+    res.set('Content-Type', 'application/json');
+    res.json({
+      status,
+      flow,
+      monitor,
+      panel,
+    });
+  } catch (e) {
+    console.error(e);
+  }
+});
+
 // API endpoint to expose Prometheus metrics
 app.get('/metrics', async (req, res) => {
   try {

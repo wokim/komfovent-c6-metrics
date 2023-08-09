@@ -45,7 +45,16 @@ export async function getPanelInfo(client: ModbusRTU) {
     humidity: 0,
   };
 
-  const buffer = (await client.readHoldingRegisters(945, 6)).buffer;
+  let buffer;
+  const connected = (
+    await client.readHoldingRegisters(953, 1)
+  ).buffer.readUint16BE(0);
+  if (connected === 1) {
+    buffer = (await client.readHoldingRegisters(945, 6)).buffer;
+  } else {
+    buffer = (await client.readHoldingRegisters(948, 6)).buffer;
+  }
+
   panel.temperature = buffer.readInt16BE(0) / 10;
   panel.humidity = buffer.readInt16BE(2);
 

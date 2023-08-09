@@ -6,5 +6,5 @@ A Node.js server that exposes status and metrics of the Komfovent C6M ventilatio
 
 ```
 npm run build
-node index.js
+node ./dist/index.js
 ```

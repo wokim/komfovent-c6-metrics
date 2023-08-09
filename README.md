@@ -40,6 +40,10 @@ cd prometheus
 docker compose up -d
 ```
 
+### Grafana Dashboard
+
+Import the dashboards stored in JSON format within the Grafana directory, and modify the datasources.
+
 ## For Developers
 
 ### Getting Started

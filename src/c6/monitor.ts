@@ -14,7 +14,7 @@ export async function getMonitorInfo(client: ModbusRTU) {
     dxUnit: 0,
     filtersImupurity: 0,
     airDampers: 0,
-    heatExchangetype: 0, // 0: Plate, 1: Rotary
+    heatExchangeType: 0, // 0: Plate, 1: Rotary
   };
 
   const buffer = (await client.readHoldingRegisters(900, 20)).buffer;
@@ -32,7 +32,7 @@ export async function getMonitorInfo(client: ModbusRTU) {
   monitor.dxUnit = buffer.readInt16BE(30) / 10;
   monitor.filtersImupurity = buffer.readUInt16BE(32);
   monitor.airDampers = buffer.readUInt16BE(34);
-  monitor.heatExchangetype = (
+  monitor.heatExchangeType = (
     await client.readHoldingRegisters(954, 1)
   ).buffer.readUint16BE(0);
 

@@ -23,9 +23,12 @@
   "homepage": "https://github.com/wokim/komfovent-c6-metrics#readme",
   "dependencies": {
     "@widesky/modbus-serial": "^9.0.1",
-    "lodash": "^4.17.21"
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "prom-client": "^14.2.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
     "@types/lodash": "^4.14.196",
     "@types/node": "^20.4.8",
     "ts-node": "^10.9.1",

@@ -1,0 +1,16 @@
+version: "3"
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./data:/prometheus/data
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  komfovent:
+    image: wokim/komfovent-c6-metrics
+    environment:
+      - MODBUS_TCP_IP=192.168.1.26
+      - MODBUS_TCP_PORT=502
+    ports:
+      - "3000:3000"

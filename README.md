@@ -17,7 +17,9 @@ node ./dist/index.js
 
 ```
 docker buildx create --use
-docker buildx build --platform=linux/arm/v7,linux/arm64,linux/amd64 -t komfovent-c6-metrics .
-docker tag komfovent-c6-metrics wokim/komfovent-c6-metrics
-docker push wokim/komfovent-c6-metrics
+docker buildx build --platform=linux/arm/v7,linux/arm64,linux/amd64 -t komfovent-c6-metrics --target release .
+docker tag komfovent-c6-metrics wokim/komfovent-c6-metrics:latest
+docker tag komfovent-c6-metrics wokim/komfovent-c6-metrics:0.0.1
+docker push wokim/komfovent-c6-metrics:latest
+docker push wokim/komfovent-c6-metrics:0.0.1
 ```

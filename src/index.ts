@@ -42,6 +42,22 @@ import {
   heatExchangeTypeGauge,
   panelTemperatureGague,
   panelHimidityGauge,
+  powerConsumptionGague,
+  heaterPowerGauge,
+  heatExchangerRecoveryGague,
+  heatExchangerEfficiencyGauge,
+  energySavingGauge,
+  SPIGauge,
+  AHUConsumptionDayGauge,
+  AHUConsumptionMonthGauge,
+  AHUConsumptionTotalGauge,
+  additionalAirHeaterConsumptionDayGauge,
+  additionalAirHeaterConsumptionMonthGauge,
+  additionalAirHeaterConsumptionTotalGauge,
+  recoveredEnergyDayGauge,
+  recoveredEnergyMonthGauge,
+  recoveredEnergyTotalGauge,
+  SPIPerDayGauge,
 } from './metrics';
 
 const app = express();
@@ -126,6 +142,28 @@ app.get('/metrics', async (req, res) => {
     filtersImupurityGauge.set(monitor.filtersImupurity);
     airDampersGauge.set(monitor.airDampers);
     heatExchangeTypeGauge.set(monitor.heatExchangeType);
+    powerConsumptionGague.set(monitor.powerConsumption);
+    heaterPowerGauge.set(monitor.heaterPower);
+    heatExchangerRecoveryGague.set(monitor.heatExchangerRecovery);
+    heatExchangerEfficiencyGauge.set(monitor.heatExchangerEfficiency);
+    energySavingGauge.set(monitor.energySaving);
+    SPIGauge.set(monitor.SPI);
+    AHUConsumptionDayGauge.set(monitor.AHUConsumptionDay);
+    AHUConsumptionMonthGauge.set(monitor.AHUConsumptionMonth);
+    AHUConsumptionTotalGauge.set(monitor.AHUConsumptionTotal);
+    additionalAirHeaterConsumptionDayGauge.set(
+      monitor.additionalAirHeaterConsumptionDay
+    );
+    additionalAirHeaterConsumptionMonthGauge.set(
+      monitor.additionalAirHeaterConsumptionMonth
+    );
+    additionalAirHeaterConsumptionTotalGauge.set(
+      monitor.additionalAirHeaterConsumptionTotal
+    );
+    recoveredEnergyDayGauge.set(monitor.recoveredEnergyDay);
+    recoveredEnergyMonthGauge.set(monitor.recoveredEnergyMonth);
+    recoveredEnergyTotalGauge.set(monitor.recoveredEnergyTotal);
+    SPIPerDayGauge.set(monitor.SPIPerDay);
 
     const panel = await getPanelInfo(client);
     panelTemperatureGague.set(panel.temperature);

@@ -173,6 +173,86 @@ export const heatExchangeTypeGauge = new Gauge({
   help: 'heat_exchange_type',
 });
 
+export const powerConsumptionGague = new Gauge({
+  name: 'power_consumption',
+  help: 'power_consumption (W)',
+});
+
+export const heaterPowerGauge = new Gauge({
+  name: 'heater_power',
+  help: 'heater_power (W)',
+});
+
+export const heatExchangerRecoveryGague = new Gauge({
+  name: 'heat_exchanger_recovery',
+  help: 'heat_exchanger_recovery (W)',
+});
+
+export const heatExchangerEfficiencyGauge = new Gauge({
+  name: 'heat_exchanger_efficiency',
+  help: 'heat_exchanger_efficiency (%)',
+});
+
+export const energySavingGauge = new Gauge({
+  name: 'energy_saving',
+  help: 'energy_saving (%)',
+});
+
+export const SPIGauge = new Gauge({
+  name: 'spi',
+  help: 'spi W/(m3/h)',
+});
+
+export const AHUConsumptionDayGauge = new Gauge({
+  name: 'ahu_consumption_day',
+  help: 'ahu_consumption_day (Wh)',
+});
+
+export const AHUConsumptionMonthGauge = new Gauge({
+  name: 'ahu_consumption_month',
+  help: 'ahu_consumption_month (Wh)',
+});
+
+export const AHUConsumptionTotalGauge = new Gauge({
+  name: 'ahu_consumption_total',
+  help: 'ahu_consumption_total (Wh)',
+});
+
+export const additionalAirHeaterConsumptionDayGauge = new Gauge({
+  name: 'additional_air_heater_consumption_day',
+  help: 'additional_air_heater_consumption_day (Wh)',
+});
+
+export const additionalAirHeaterConsumptionMonthGauge = new Gauge({
+  name: 'additional_air_heater_consumption_month',
+  help: 'additional_air_heater_consumption_month (Wh)',
+});
+
+export const additionalAirHeaterConsumptionTotalGauge = new Gauge({
+  name: 'additional_air_heater_consumption_total',
+  help: 'additional_air_heater_consumption_total (Wh)',
+});
+
+export const recoveredEnergyDayGauge = new Gauge({
+  name: 'recovered_energy_day',
+  help: 'recovered_energy_day (Wh)',
+});
+
+export const recoveredEnergyMonthGauge = new Gauge({
+  name: 'recovered_energy_month',
+  help: 'recovered_energy_month (Wh)',
+});
+
+export const recoveredEnergyTotalGauge = new Gauge({
+  name: 'recovered_energy_total',
+  help: 'recovered_energy_total (Wh)',
+});
+
+export const SPIPerDayGauge = new Gauge({
+  name: 'spi_per_day',
+  help: 'spi_per_day W/(m3/h)',
+});
+
 export const panelTemperatureGague = new Gauge({
   name: 'panel_temperature',
   help: 'panel_temperature',

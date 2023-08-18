@@ -15,6 +15,22 @@ export async function getMonitorInfo(client: ModbusRTU) {
     filtersImupurity: 0,
     airDampers: 0,
     heatExchangeType: 0, // 0: Plate, 1: Rotary
+    powerConsumption: 0, // W
+    heaterPower: 0, // W
+    heatExchangerRecovery: 0, // W
+    heatExchangerEfficiency: 0, // percent
+    energySaving: 0, // percent
+    SPI: 0, // W/(m3/h)
+    AHUConsumptionDay: 0, // Wh
+    AHUConsumptionMonth: 0, // Wh
+    AHUConsumptionTotal: 0, // Wh
+    additionalAirHeaterConsumptionDay: 0, // Wh
+    additionalAirHeaterConsumptionMonth: 0, // Wh
+    additionalAirHeaterConsumptionTotal: 0, // Wh
+    recoveredEnergyDay: 0, // Wh
+    recoveredEnergyMonth: 0, // Wh
+    recoveredEnergyTotal: 0, // Wh
+    SPIPerDay: 0, // W/(m3/h)
   };
 
   const buffer = (await client.readHoldingRegisters(900, 20)).buffer;
@@ -35,6 +51,24 @@ export async function getMonitorInfo(client: ModbusRTU) {
   monitor.heatExchangeType = (
     await client.readHoldingRegisters(954, 1)
   ).buffer.readUint16BE(0);
+
+  const efficiency = (await client.readHoldingRegisters(920, 25)).buffer;
+  monitor.powerConsumption = efficiency.readUint16BE(0);
+  monitor.heaterPower = efficiency.readUint16BE(2);
+  monitor.heatExchangerRecovery = efficiency.readUint16BE(4);
+  monitor.heatExchangerEfficiency = efficiency.readUint16BE(6);
+  monitor.energySaving = efficiency.readUint16BE(8);
+  monitor.SPI = efficiency.readUint16BE(10);
+  monitor.AHUConsumptionDay = efficiency.readUint32BE(12);
+  monitor.AHUConsumptionMonth = efficiency.readUint32BE(16);
+  monitor.AHUConsumptionTotal = efficiency.readUint32BE(20);
+  monitor.additionalAirHeaterConsumptionDay = efficiency.readUint32BE(24);
+  monitor.additionalAirHeaterConsumptionMonth = efficiency.readUint32BE(28);
+  monitor.additionalAirHeaterConsumptionTotal = efficiency.readUint32BE(32);
+  monitor.recoveredEnergyDay = efficiency.readUint32BE(36);
+  monitor.recoveredEnergyMonth = efficiency.readUint32BE(40);
+  monitor.recoveredEnergyTotal = efficiency.readUint32BE(44);
+  monitor.SPIPerDay = efficiency.readUint16BE(48);
 
   return monitor;
 }

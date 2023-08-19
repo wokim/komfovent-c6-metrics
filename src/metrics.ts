@@ -117,6 +117,18 @@ export const normalExtractFlowGauge = new Gauge({
   help: 'normal_extract_flow',
 });
 
+export const normalSetPointGauge = new Gauge({
+  name: 'normal_setpoint',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'normal_setpoint (C)',
+});
+
+export const normalHeatingGauge = new Gauge({
+  name: 'normal_heating',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'normal_heating (0: off, 1: on)',
+});
+
 export const overrideSupplyFlowGauge = new Gauge({
   name: 'override_supply_flow',
   labelNames: ['firmware_version', 'panel_firmware_version'],
@@ -127,6 +139,18 @@ export const overrideExtractFlowGauge = new Gauge({
   name: 'override_extract_flow',
   labelNames: ['firmware_version', 'panel_firmware_version'],
   help: 'override_extract_flow',
+});
+
+export const overrideSetPointGauge = new Gauge({
+  name: 'override_setpoint',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'override_setpoint (C)',
+});
+
+export const overrideHeatingGauge = new Gauge({
+  name: 'override_heating',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'override_heating (0: off, 1: on)',
 });
 
 export const supplyTemperatureGauge = new Gauge({

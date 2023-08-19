@@ -53,13 +53,20 @@ export async function getFanSpeed(client: ModbusRTU, mode: Mode, fan: Fan) {
 
 export async function getFlow(client: ModbusRTU) {
   const flow = {
-    normal: { supply: 0, extract: 0 },
-    override: { supply: 0, extract: 0 },
+    normal: { supply: 0, extract: 0, setpoint: 0, heating: 0 },
+    override: { supply: 0, extract: 0, setpoint: 0, heating: 0 },
   };
   flow.normal.supply = await getFanSpeed(client, Mode.Normal, Fan.Supply);
   flow.normal.extract = await getFanSpeed(client, Mode.Normal, Fan.Extract);
   flow.override.supply = await getFanSpeed(client, Mode.Override, Fan.Supply);
   flow.override.extract = await getFanSpeed(client, Mode.Override, Fan.Extract);
 
+  const normal = (await client.readHoldingRegisters(109, 2)).buffer;
+  const override = (await client.readHoldingRegisters(141, 2)).buffer;
+
+  flow.normal.setpoint = normal.readInt16BE(0) / 10;
+  flow.normal.heating = normal.readUint16BE(2);
+  flow.override.setpoint = override.readInt16BE(0) / 10;
+  flow.override.heating = override.readUint16BE(2);
   return flow;
 }

@@ -58,6 +58,10 @@ import {
   recoveredEnergyMonthGauge,
   recoveredEnergyTotalGauge,
   SPIPerDayGauge,
+  normalSetPointGauge,
+  normalHeatingGauge,
+  overrideSetPointGauge,
+  overrideHeatingGauge,
 } from './metrics';
 import { getFirmwareVersion } from './c6/firmware';
 
@@ -168,12 +172,24 @@ app.get('/metrics', async (req, res) => {
     normalExtractFlowGauge
       .labels(firmware.version, firmware.panelVersion)
       .set(flow.normal.extract);
+    normalSetPointGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.normal.setpoint);
+    normalHeatingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.normal.heating);
     overrideSupplyFlowGauge
       .labels(firmware.version, firmware.panelVersion)
       .set(flow.override.supply);
     overrideExtractFlowGauge
       .labels(firmware.version, firmware.panelVersion)
       .set(flow.override.extract);
+    overrideSetPointGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.override.setpoint);
+    overrideHeatingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.override.heating);
 
     const monitor = await getMonitorInfo(client);
     supplyTemperatureGauge

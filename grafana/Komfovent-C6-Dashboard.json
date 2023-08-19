@@ -1,49 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_RASPBERRYPI-PROMETHEUS",
-      "label": "raspberrypi-prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    },
-    {
-      "name": "DS_GRAFANACLOUD-WOKIM-PROM",
-      "label": "grafanacloud-wokim-prom",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "10.1.0-cloud.3.2a3062e8"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -62,15 +17,28 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
-  "id": null,
+  "graphTooltip": 1,
+  "id": 15,
   "links": [],
   "liveNow": false,
   "panels": [
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "panels": [],
+      "title": "Komfovent Ventilation Unit",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
       },
       "fieldConfig": {
         "defaults": {
@@ -96,37 +64,35 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 6,
+        "w": 7,
         "x": 0,
-        "y": 0
+        "y": 1
       },
-      "id": 1,
+      "id": 2,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
+      "pluginVersion": "10.2.0-59542pre",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "power{job=\"komfovent\"}",
+          "expr": "power{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -139,11 +105,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "eco",
+          "expr": "eco{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -156,11 +122,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "auto",
+          "expr": "auto{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -177,7 +143,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
       },
       "fieldConfig": {
         "defaults": {
@@ -203,37 +169,35 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "h": 6,
+        "w": 8,
+        "x": 7,
+        "y": 1
       },
-      "id": 4,
+      "id": 3,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
+      "pluginVersion": "10.2.0-59542pre",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "status_icon_fan{job=\"komfovent\"}",
+          "expr": "status_icon_fan{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -246,11 +210,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "status_icon_rotor",
+          "expr": "status_icon_rotor{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -263,11 +227,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "status_icon_heating",
+          "expr": "status_icon_heating{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -280,11 +244,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "status_icon_cooling",
+          "expr": "status_icon_cooling{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -301,7 +265,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
       },
       "fieldConfig": {
         "defaults": {
@@ -421,12 +385,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
+        "h": 6,
+        "w": 9,
+        "x": 15,
+        "y": 1
       },
-      "id": 3,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [],
@@ -435,7 +399,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -444,12 +408,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "current_mode{job=\"komfovent\"}",
+          "expr": "current_mode{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -466,7 +430,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
       },
       "fieldConfig": {
         "defaults": {
@@ -523,10 +487,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 8
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 7
       },
       "id": 5,
       "options": {
@@ -537,7 +501,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -545,12 +509,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "supply_flow",
+          "expr": "supply_flow{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -563,11 +527,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "supply_fan_sntensivity",
+          "expr": "supply_fan_sntensivity{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -576,6 +540,17 @@
           "range": true,
           "refId": "B",
           "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "expr": "",
+          "hide": false,
+          "instant": false,
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "Supply Fan Flow",
@@ -584,205 +559,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Control Panel Humidity (%)"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "supply_temperature{job=\"komfovent\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Supply Temperature (°C)",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "extract_temperature",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Extract Temperature (°C)",
-          "range": true,
-          "refId": "B",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "outdoor_temperature",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Outdoor Temperature (°C)",
-          "range": true,
-          "refId": "C",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "panel_temperature",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Control Panel Temperature (°C)",
-          "range": true,
-          "refId": "D",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "panel_humidity",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Control Panel Humidity (%)",
-          "range": true,
-          "refId": "E",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "delta(supply_temperature[1m])",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "SA Delta (°C)",
-          "range": true,
-          "refId": "F",
-          "useBackend": false
-        }
-      ],
-      "title": "Temperature",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
       },
       "fieldConfig": {
         "defaults": {
@@ -839,12 +616,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 16
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 7
       },
-      "id": 6,
+      "id": 7,
       "options": {
         "legend": {
           "calcs": [],
@@ -853,7 +630,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -861,12 +638,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "extract_flow",
+          "expr": "extract_flow{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -879,11 +656,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_RASPBERRYPI-PROMETHEUS}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "extract_fan_sntensivity",
+          "expr": "extract_fan_sntensivity{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -900,7 +677,109 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_GRAFANACLOUD-WOKIM-PROM}"
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 4800
+              }
+            ]
+          },
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      },
+      "id": 17,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.0-59542pre",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ahu_consumption_day{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Consumed Energy (Wh)",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "additional_air_heater_consumption_day{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Heating Energy (Wh)",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "recovered_energy_day{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Recovered Energy (Wh)",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        }
+      ],
+      "title": "Energy Counter (Day)",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
       },
       "fieldConfig": {
         "defaults": {
@@ -970,12 +849,12 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 14
       },
-      "id": 7,
+      "id": 6,
       "options": {
         "legend": {
           "calcs": [],
@@ -984,7 +863,7 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -993,11 +872,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-WOKIM-PROM}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "supply_temperature{job=\"komfovent\"}",
+          "expr": "supply_temperature{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1009,11 +888,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-WOKIM-PROM}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "extract_temperature",
+          "expr": "extract_temperature{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1026,11 +905,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-WOKIM-PROM}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "outdoor_temperature",
+          "expr": "outdoor_temperature{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1043,11 +922,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-WOKIM-PROM}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "panel_temperature",
+          "expr": "panel_temperature{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1060,11 +939,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-WOKIM-PROM}"
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "panel_humidity",
+          "expr": "panel_humidity{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -1073,44 +952,1849 @@
           "range": true,
           "refId": "E",
           "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-WOKIM-PROM}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "delta(supply_temperature[1m])",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "SA Delta (°C)",
-          "range": true,
-          "refId": "F",
-          "useBackend": false
         }
       ],
       "title": "Temperature",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 144000
+              }
+            ]
+          },
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "id": 18,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.0-59542pre",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "ahu_consumption_month{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Consumed Energy (Wh)",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "additional_air_heater_consumption_month{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Heating Energy (Wh)",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "recovered_energy_month{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Recovered Energy (Wh)",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        }
+      ],
+      "title": "Energy Counter (Month)",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Electric Heater - Normal"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bool_on_off"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Electric Heater - Override"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bool_on_off"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 21
+      },
+      "id": 15,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "normal_setpoint{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Air Temperature - Normal (°C)",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "override_setpoint{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Air Temperature - Override (°C)",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        }
+      ],
+      "title": "Air Temperature",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+      },
+      "description": "1CMH의 공기를 공급할 때 소비되는 전력량",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "W/(m3/h)"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 21
+      },
+      "id": 19,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.0-59542pre",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "spi{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"} / 100",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "SPI",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "spi_per_day{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"} / 100",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "SPI per Day",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        }
+      ],
+      "title": "SPI",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Heat Exchanger Efficiency (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "min",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Energy Savings (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 21
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "power_consumption{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Power Comsumption (W)",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "heater_power{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Heating Power (W)",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "heat_exchanger_recovery{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Heat Exchanger Recovery (W)",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "heat_exchanger_efficiency{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Heat Exchanger Efficiency (%)",
+          "range": true,
+          "refId": "D",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "energy_saving{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Energy Savings (%)",
+          "range": true,
+          "refId": "E",
+          "useBackend": false
+        }
+      ],
+      "title": "Efficiency and Comsumption",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 8,
+      "panels": [],
+      "title": "Atmocube",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#6ed0e0",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 200
+              },
+              {
+                "color": "#EAB839",
+                "value": 250
+              },
+              {
+                "color": "#EF843C",
+                "value": 350
+              },
+              {
+                "color": "red",
+                "value": 400
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "NOx Index"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 100
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 300
+                    },
+                    {
+                      "color": "red",
+                      "value": 350
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CO2"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "#6ED0E0",
+                      "value": 100
+                    },
+                    {
+                      "color": "green",
+                      "value": 600
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 1000
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 1500
+                    },
+                    {
+                      "color": "red",
+                      "value": 2500
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "ppm"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 29
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-59542pre",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "voc_index",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "VOC Index",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "nox_index",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "NOx Index",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "co2",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "CO2",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        }
+      ],
+      "title": "Air Quality #1",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#6ed0e0",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0.1
+              },
+              {
+                "color": "#EAB839",
+                "value": 0.2
+              },
+              {
+                "color": "#E24D42",
+                "value": 0.5
+              },
+              {
+                "color": "#EF843C",
+                "value": 0.7
+              }
+            ]
+          },
+          "unit": "ppm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CO"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 1.8
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 8.8
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 10
+                    },
+                    {
+                      "color": "red",
+                      "value": 15
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "O3"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 0.026
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 0.06
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 0.07
+                    },
+                    {
+                      "color": "red",
+                      "value": 0.1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Formaldehyde"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 0.06
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 0.11
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 0.31
+                    },
+                    {
+                      "color": "red",
+                      "value": 0.7599
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-59542pre",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "tvoc",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "TVOC",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "co",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "CO",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "o3",
+          "format": "time_series",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "O3",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ch2o",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Formaldehyde",
+          "range": true,
+          "refId": "D",
+          "useBackend": false
+        }
+      ],
+      "title": "Air Quality #2",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#6ed0e0",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 15
+              },
+              {
+                "color": "#EAB839",
+                "value": 35
+              },
+              {
+                "color": "#EF843C",
+                "value": 62
+              },
+              {
+                "color": "red",
+                "value": 96
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PM2.5"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 21
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 51
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 91
+                    },
+                    {
+                      "color": "red",
+                      "value": 141
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PM10"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 31
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 76
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 126
+                    },
+                    {
+                      "color": "red",
+                      "value": 201
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 34
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-59542pre",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "pm1",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "PM1.0",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "pm25",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "PM2.5",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "pm4",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "PM4",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "pm10",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "PM10",
+          "range": true,
+          "refId": "D",
+          "useBackend": false
+        }
+      ],
+      "title": "Particle Pollution",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#6ed0e0",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 10
+              },
+              {
+                "color": "#ef843c",
+                "value": 15
+              },
+              {
+                "color": "#eab839",
+                "value": 20
+              },
+              {
+                "color": "green",
+                "value": 35
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 40
+              },
+              {
+                "color": "green",
+                "value": 50
+              },
+              {
+                "color": "#EAB839",
+                "value": 65
+              },
+              {
+                "color": "#EF843C",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 87
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temperature"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "#F2495C",
+                      "value": 5
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 11
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 15
+                    },
+                    {
+                      "color": "green",
+                      "value": 17
+                    },
+                    {
+                      "color": "#6ED0E0",
+                      "value": 21
+                    },
+                    {
+                      "color": "green",
+                      "value": 26
+                    },
+                    {
+                      "color": "#eab839",
+                      "value": 27
+                    },
+                    {
+                      "color": "#ef843c",
+                      "value": 33
+                    },
+                    {
+                      "color": "#f2495c",
+                      "value": 39
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Absolute Humidity"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "congm3"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#6ed0e0",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 12
+                    },
+                    {
+                      "color": "red",
+                      "value": 15
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 34
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-59542pre",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "temperature",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Temperature",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "humidity",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Humidity",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "absolute_humidity",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Absolute Humidity",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        }
+      ],
+      "title": "Indoor Index #1",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 27
+              },
+              {
+                "color": "red",
+                "value": 27
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Humidity (%)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "%"
+              },
+              {
+                "id": "custom.thresholdsStyle",
+                "value": {
+                  "mode": "dashed+area"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 40
+                    },
+                    {
+                      "color": "red",
+                      "value": 60
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 39
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "temperature",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "LR Temperature (°C)",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "humidity",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Humidity (%)",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "outdoor_temperature{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Outdoor Temperature (°C)",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        }
+      ],
+      "title": "Indoor Index #2",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "lux"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Noise (dB)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dB"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Pressure (mbar)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "pressurebar"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 39
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "light",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Light (Lx)",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "noise",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Noise (dB)",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "pressure",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Pressure (mbar)",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        }
+      ],
+      "title": "Misc.",
+      "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": ["17.4.35.53"],
+          "value": ["17.4.35.53"]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "definition": "label_values(firmware_version)",
+        "description": "Komfovent C6M Firmware Version",
+        "hide": 0,
+        "includeAll": true,
+        "label": "C6M Firmware",
+        "multi": true,
+        "name": "v_firmware_version",
+        "options": [],
+        "query": {
+          "query": "label_values(firmware_version)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": ["1.1.3.34"],
+          "value": ["1.1.3.34"]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "definition": "label_values(panel_firmware_version)",
+        "description": "Komfovent C6M Panel Firmware Version",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Panel Firmware Version",
+        "multi": true,
+        "name": "v_panel_firmware_version",
+        "options": [],
+        "query": {
+          "query": "label_values(panel_firmware_version)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Komfovent-C6",
-  "uid": "d962d8df-f528-498b-8350-449da86e2133",
-  "version": 12,
+  "title": "Wonju Passive House",
+  "uid": "ce82fad3-c879-492c-b32d-71e15ad4e5d6",
+  "version": 41,
   "weekStart": ""
 }

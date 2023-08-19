@@ -59,6 +59,7 @@ import {
   recoveredEnergyTotalGauge,
   SPIPerDayGauge,
 } from './metrics';
+import { getFirmwareVersion } from './c6/firmware';
 
 const app = express();
 
@@ -77,6 +78,7 @@ app.get('/info', async (req, res) => {
     const flow = await getFlow(client);
     const monitor = await getMonitorInfo(client);
     const panel = await getPanelInfo(client);
+    const firmware = await getFirmwareVersion(client);
     await new Promise<void>((resolve) => client.close(resolve));
 
     res.set('Content-Type', 'application/json');
@@ -85,6 +87,7 @@ app.get('/info', async (req, res) => {
       flow,
       monitor,
       panel,
+      firmware,
     });
   } catch (e) {
     console.error(e);
@@ -103,71 +106,171 @@ app.get('/metrics', async (req, res) => {
     client.setID(1);
     client.setTimeout(1000);
 
+    const firmware = await getFirmwareVersion(client);
+
     const status = await getStatus(client);
-    powerStatusGauge.set(status.power);
-    ecoModeGauge.set(status.eco);
-    autoModeGauge.set(status.auto);
-    currentModeGauge.set(status.mode);
-    statusIconStartingGauge.set(status.icon.starting);
-    statusIconStopingGauge.set(status.icon.stoping);
-    statusIconFanGauge.set(status.icon.fan);
-    statusIconRotorGauge.set(status.icon.rotor);
-    statusIconHeatingGauge.set(status.icon.heating);
-    statusIconCoolingGauge.set(status.icon.cooling);
-    statusIconHeatingDeniedGauge.set(status.icon.heatingDenied);
-    statusIconCoolingDeniedGauge.set(status.icon.coolingDenied);
-    statusIconFlowDownGauge.set(status.icon.flowDown);
-    statusIconFreeHeatingGauge.set(status.icon.freeHeating);
-    statusIconFreeCoolingGauge.set(status.icon.freeCooling);
-    statusIconAlarmFGauge.set(status.icon.alarmF);
-    statusIconAlarmWGauge.set(status.icon.alarmW);
+    powerStatusGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.power);
+    ecoModeGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.eco);
+    autoModeGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.auto);
+    currentModeGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.mode);
+    statusIconStartingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.starting);
+    statusIconStopingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.stoping);
+    statusIconFanGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.fan);
+    statusIconRotorGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.rotor);
+    statusIconHeatingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.heating);
+    statusIconCoolingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.cooling);
+    statusIconHeatingDeniedGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.heatingDenied);
+    statusIconCoolingDeniedGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.coolingDenied);
+    statusIconFlowDownGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.flowDown);
+    statusIconFreeHeatingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.freeHeating);
+    statusIconFreeCoolingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.freeCooling);
+    statusIconAlarmFGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.alarmF);
+    statusIconAlarmWGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(status.icon.alarmW);
 
     const flow = await getFlow(client);
-    normalSupplyFlowGauge.set(flow.normal.supply);
-    normalExtractFlowGauge.set(flow.normal.extract);
-    overrideSupplyFlowGauge.set(flow.override.supply);
-    overrideExtractFlowGauge.set(flow.override.extract);
+    normalSupplyFlowGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.normal.supply);
+    normalExtractFlowGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.normal.extract);
+    overrideSupplyFlowGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.override.supply);
+    overrideExtractFlowGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(flow.override.extract);
 
     const monitor = await getMonitorInfo(client);
-    supplyTemperatureGauge.set(monitor.supplyTemperature);
-    extractTemperatureGauge.set(monitor.extractTemperature);
-    outdoorTemperatureGauge.set(monitor.outdoorTemperature);
-    supplyFlowGauge.set(monitor.supplyFlow);
-    extractFlowGauge.set(monitor.extractFlow);
-    supplyFanIntensivityGauge.set(monitor.supplyFanIntensivity);
-    extractFanIntensivityGauge.set(monitor.extractFanIntensivity);
-    heatExchangerGauge.set(monitor.heatExchanger);
-    electricHeaterGauge.set(monitor.electricHeater);
-    dxUnitGauge.set(monitor.dxUnit);
-    filtersImupurityGauge.set(monitor.filtersImupurity);
-    airDampersGauge.set(monitor.airDampers);
-    heatExchangeTypeGauge.set(monitor.heatExchangeType);
-    powerConsumptionGague.set(monitor.powerConsumption);
-    heaterPowerGauge.set(monitor.heaterPower);
-    heatExchangerRecoveryGague.set(monitor.heatExchangerRecovery);
-    heatExchangerEfficiencyGauge.set(monitor.heatExchangerEfficiency);
-    energySavingGauge.set(monitor.energySaving);
-    SPIGauge.set(monitor.SPI);
-    AHUConsumptionDayGauge.set(monitor.AHUConsumptionDay);
-    AHUConsumptionMonthGauge.set(monitor.AHUConsumptionMonth);
-    AHUConsumptionTotalGauge.set(monitor.AHUConsumptionTotal);
-    additionalAirHeaterConsumptionDayGauge.set(
-      monitor.additionalAirHeaterConsumptionDay
+    supplyTemperatureGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.supplyTemperature);
+    extractTemperatureGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.extractTemperature);
+    outdoorTemperatureGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.outdoorTemperature);
+    supplyFlowGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.supplyFlow);
+    extractFlowGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.extractFlow);
+    supplyFanIntensivityGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.supplyFanIntensivity);
+    extractFanIntensivityGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.extractFanIntensivity);
+    heatExchangerGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.heatExchanger);
+    electricHeaterGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.electricHeater);
+    dxUnitGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.dxUnit);
+    filtersImupurityGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.filtersImupurity);
+    airDampersGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.airDampers);
+    heatExchangeTypeGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.heatExchangeType);
+    powerConsumptionGague
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.powerConsumption);
+    heaterPowerGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.heaterPower);
+    heatExchangerRecoveryGague
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.heatExchangerRecovery);
+    heatExchangerEfficiencyGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.heatExchangerEfficiency);
+    energySavingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.energySaving);
+    SPIGauge.labels(firmware.version, firmware.panelVersion).set(monitor.SPI);
+    AHUConsumptionDayGauge.labels(firmware.version, firmware.panelVersion).set(
+      monitor.AHUConsumptionDay
     );
-    additionalAirHeaterConsumptionMonthGauge.set(
-      monitor.additionalAirHeaterConsumptionMonth
+    AHUConsumptionMonthGauge.labels(
+      firmware.version,
+      firmware.panelVersion
+    ).set(monitor.AHUConsumptionMonth);
+    AHUConsumptionTotalGauge.labels(
+      firmware.version,
+      firmware.panelVersion
+    ).set(monitor.AHUConsumptionTotal);
+    additionalAirHeaterConsumptionDayGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.additionalAirHeaterConsumptionDay);
+    additionalAirHeaterConsumptionMonthGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.additionalAirHeaterConsumptionMonth);
+    additionalAirHeaterConsumptionTotalGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.additionalAirHeaterConsumptionTotal);
+    recoveredEnergyDayGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.recoveredEnergyDay);
+    recoveredEnergyMonthGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.recoveredEnergyMonth);
+    recoveredEnergyTotalGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.recoveredEnergyTotal);
+    SPIPerDayGauge.labels(firmware.version, firmware.panelVersion).set(
+      monitor.SPIPerDay
     );
-    additionalAirHeaterConsumptionTotalGauge.set(
-      monitor.additionalAirHeaterConsumptionTotal
-    );
-    recoveredEnergyDayGauge.set(monitor.recoveredEnergyDay);
-    recoveredEnergyMonthGauge.set(monitor.recoveredEnergyMonth);
-    recoveredEnergyTotalGauge.set(monitor.recoveredEnergyTotal);
-    SPIPerDayGauge.set(monitor.SPIPerDay);
 
     const panel = await getPanelInfo(client);
-    panelTemperatureGague.set(panel.temperature);
-    panelHimidityGauge.set(panel.humidity);
+    panelTemperatureGague
+      .labels(firmware.version, firmware.panelVersion)
+      .set(panel.temperature);
+    panelHimidityGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(panel.humidity);
 
     await new Promise<void>((resolve) => client.close(resolve));
   } catch (e) {

@@ -850,7 +850,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 6,
         "x": 0,
         "y": 14
       },
@@ -965,6 +965,148 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Electric Heater - Normal"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bool_on_off"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Electric Heater - Override"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bool_on_off"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 14
+      },
+      "id": 15,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "normal_setpoint{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Air Temperature - Normal (°C)",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "override_setpoint{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Air Temperature - Override (°C)",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        }
+      ],
+      "title": "Air Temperature",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "mode": "thresholds"
           },
           "mappings": [],
@@ -1067,102 +1209,101 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "mode": "thresholds"
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "yellow",
+                "value": 1
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "bool_on_off"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "Electric Heater - Normal"
+              "options": "Heat Recovery Control"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "bool_on_off"
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Auto"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Constant"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Non stop"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Electric Heater - Override"
+              "options": "Min Air Supply Temp. (°C)"
             },
             "properties": [
               {
                 "id": "unit",
-                "value": "bool_on_off"
+                "value": "celsius"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max Air Supply Temp. (°C)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 7,
+        "h": 6,
         "w": 6,
         "x": 0,
         "y": 21
       },
-      "id": 15,
+      "id": 21,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
+        "textMode": "value_and_name"
       },
-      "pluginVersion": "10.1.0-cloud.3.2a3062e8",
+      "pluginVersion": "10.2.0-59542pre",
       "targets": [
         {
           "datasource": {
@@ -1171,11 +1312,13 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "normal_setpoint{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "exemplar": false,
+          "expr": "free_heating_or_cooling{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "Air Temperature - Normal (°C)",
+          "interval": "",
+          "legendFormat": "Free Heating/Cooling",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1187,19 +1330,79 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "override_setpoint{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "expr": "heating_enable_denied{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "Air Temperature - Override (°C)",
+          "legendFormat": "Heating Enable Denied",
           "range": true,
           "refId": "B",
           "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "cooling_enable_denied{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Cooling Enable Denied",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "heat_recovery_control{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Heat Recovery Control",
+          "range": true,
+          "refId": "D",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "editorMode": "builder",
+          "expr": "minimum_supply_air_temperature{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Min Air Supply Temp. (°C)",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c9c94008-5dca-468a-ba61-0375866be269"
+          },
+          "editorMode": "code",
+          "expr": "maximum_supply_air_temperature{job=\"komfovent\", firmware_version=~\"$v_firmware_version\", panel_firmware_version=~\"$v_panel_firmware_version\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Max Air Supply Temp. (°C)",
+          "range": true,
+          "refId": "F"
         }
       ],
-      "title": "Air Temperature",
-      "type": "timeseries"
+      "title": "Eco Mode Status #1",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -2788,13 +2991,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Wonju Passive House",
+  "title": "Wonju Passivhaus",
   "uid": "ce82fad3-c879-492c-b32d-71e15ad4e5d6",
-  "version": 41,
+  "version": 43,
   "weekStart": ""
 }

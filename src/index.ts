@@ -62,8 +62,15 @@ import {
   normalHeatingGauge,
   overrideSetPointGauge,
   overrideHeatingGauge,
+  minimumSupplyAirTemperatureGauge,
+  maximumSupplyAirTemperatureGauge,
+  freeHeatingOrCoolingGauge,
+  heatingEnableDeniedGauge,
+  coolingEnableDeniedGauge,
+  heatRecoveryControlGauge,
 } from './metrics';
 import { getFirmwareVersion } from './c6/firmware';
+import { getEcoStatus } from './c6/eco';
 
 const app = express();
 
@@ -83,6 +90,7 @@ app.get('/info', async (req, res) => {
     const monitor = await getMonitorInfo(client);
     const panel = await getPanelInfo(client);
     const firmware = await getFirmwareVersion(client);
+    const eco = await getEcoStatus(client);
     await new Promise<void>((resolve) => client.close(resolve));
 
     res.set('Content-Type', 'application/json');
@@ -92,6 +100,7 @@ app.get('/info', async (req, res) => {
       monitor,
       panel,
       firmware,
+      eco,
     });
   } catch (e) {
     console.error(e);
@@ -287,6 +296,26 @@ app.get('/metrics', async (req, res) => {
     panelHimidityGauge
       .labels(firmware.version, firmware.panelVersion)
       .set(panel.humidity);
+
+    const eco = await getEcoStatus(client);
+    minimumSupplyAirTemperatureGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(eco.minimumSupplyAirTemperature);
+    maximumSupplyAirTemperatureGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(eco.maximumSupplyAirTemperature);
+    freeHeatingOrCoolingGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(eco.freeHeatingOrCooling);
+    heatingEnableDeniedGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(eco.heatingEnableDenied);
+    coolingEnableDeniedGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(eco.coolingEnableDenied);
+    heatRecoveryControlGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(eco.heatRecoveryControl);
 
     await new Promise<void>((resolve) => client.close(resolve));
   } catch (e) {

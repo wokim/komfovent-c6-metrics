@@ -338,3 +338,39 @@ export const panelHimidityGauge = new Gauge({
   labelNames: ['firmware_version', 'panel_firmware_version'],
   help: 'panel_humidity',
 });
+
+export const minimumSupplyAirTemperatureGauge = new Gauge({
+  name: 'minimum_supply_air_temperature',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'eco - minimum_supply_air_temperature',
+});
+
+export const maximumSupplyAirTemperatureGauge = new Gauge({
+  name: 'maximum_supply_air_temperature',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'eco - maximum_supply_air_temperature',
+});
+
+export const freeHeatingOrCoolingGauge = new Gauge({
+  name: 'free_heating_or_cooling',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'eco - free_heating_or_cooling (Off = 0, On = 1)',
+});
+
+export const heatingEnableDeniedGauge = new Gauge({
+  name: 'heating_enable_denied',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'eco - heating_enable_denied (Off = 0, On = 1)',
+});
+
+export const coolingEnableDeniedGauge = new Gauge({
+  name: 'cooling_enable_denied',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'eco - cooling_enable_denied (Off = 0, On = 1)',
+});
+
+export const heatRecoveryControlGauge = new Gauge({
+  name: 'heat_recovery_control',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'eco - heat_recovery_control (Auto = 0, Constant = 1, Non stop = 2)',
+});

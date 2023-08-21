@@ -1249,7 +1249,7 @@
                       },
                       "2": {
                         "index": 2,
-                        "text": "Non stop"
+                        "text": "Non Stop"
                       }
                     },
                     "type": "value"
@@ -1285,7 +1285,7 @@
         ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 6,
         "x": 0,
         "y": 21
@@ -1401,7 +1401,7 @@
           "refId": "F"
         }
       ],
-      "title": "Eco Mode Status #1",
+      "title": "Eco Mode Status",
       "type": "stat"
     },
     {
@@ -2991,13 +2991,13 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Wonju Passivhaus",
   "uid": "ce82fad3-c879-492c-b32d-71e15ad4e5d6",
-  "version": 43,
+  "version": 46,
   "weekStart": ""
 }

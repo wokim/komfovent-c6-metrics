@@ -14,6 +14,8 @@ export async function getMonitorInfo(client: ModbusRTU) {
     dxUnit: 0,
     filtersImupurity: 0,
     airDampers: 0,
+    OA_Humidity: 0,
+    OA_Temperature: 0,
     heatExchangeType: 0, // 0: Plate, 1: Rotary
     powerConsumption: 0, // W
     heaterPower: 0, // W
@@ -48,6 +50,15 @@ export async function getMonitorInfo(client: ModbusRTU) {
   monitor.dxUnit = buffer.readInt16BE(30) / 10;
   monitor.filtersImupurity = buffer.readUInt16BE(32);
   monitor.airDampers = buffer.readUInt16BE(34);
+  // const b8 = buffer.readUInt16BE(40); // 0-10V to 0~100%, value is 0~2000
+  // const b9 = buffer.readUInt16BE(42); // 0-10V to -20~80 degree (온습도계 점퍼셋팅), value is 0~2000
+
+  // 0-10V to 0~100%, value is 0~2000
+  let b8 = (await client.readHoldingRegisters(951, 1)).buffer.readUint16BE(0);
+  // 0-10V to -20~80 degree (온습도계 점퍼셋팅), value is 0~2000
+  let b9 = (await client.readHoldingRegisters(952, 1)).buffer.readUint16BE(0);
+  monitor.OA_Humidity = parseFloat(((b8 / 2000) * 100).toFixed(2));
+  monitor.OA_Temperature = parseFloat(((b9 / 2000) * 100 - 20).toFixed(2));
   monitor.heatExchangeType = (
     await client.readHoldingRegisters(954, 1)
   ).buffer.readUint16BE(0);

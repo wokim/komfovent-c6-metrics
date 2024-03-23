@@ -85,6 +85,13 @@ app.get('/info', async (req, res) => {
     client.setID(1);
     client.setTimeout(1000);
 
+    // 환기장치의 Air Quality 기능을 끄고 센서에 연결된 온습도만 읽는다
+    // OA온도를 측정하기 위해 Air quality sensor type B8과 B9에 0-10V 온습도계를 장착
+    await client.writeRegister(204, 0);
+    // B8, B9센서를 CO2로 해석한다. 값의 범위는 0~2000이다.
+    await client.writeRegister(212, 1);
+    await client.writeRegister(213, 1);
+
     const status = await getStatus(client);
     const flow = await getFlow(client);
     const monitor = await getMonitorInfo(client);

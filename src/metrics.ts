@@ -171,6 +171,18 @@ export const outdoorTemperatureGauge = new Gauge({
   help: 'outdoor_temperature',
 });
 
+export const oaTemperatureGauge = new Gauge({
+  name: 'oa_temperature',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'oa_temperature (additional humidity sensor)',
+});
+
+export const oaHumidityGauge = new Gauge({
+  name: 'oa_humidity',
+  labelNames: ['firmware_version', 'panel_firmware_version'],
+  help: 'oa_humidity (additional humidity sensor)',
+});
+
 export const supplyFlowGauge = new Gauge({
   name: 'supply_flow',
   labelNames: ['firmware_version', 'panel_firmware_version'],

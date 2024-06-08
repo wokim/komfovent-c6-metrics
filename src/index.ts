@@ -30,6 +30,8 @@ import {
   supplyTemperatureGauge,
   extractTemperatureGauge,
   outdoorTemperatureGauge,
+  oaTemperatureGauge,
+  oaHumidityGauge,
   supplyFlowGauge,
   extractFlowGauge,
   supplyFanIntensivityGauge,
@@ -217,6 +219,12 @@ app.get('/metrics', async (req, res) => {
     outdoorTemperatureGauge
       .labels(firmware.version, firmware.panelVersion)
       .set(monitor.outdoorTemperature);
+    oaTemperatureGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.OA_Temperature);
+    oaHumidityGauge
+      .labels(firmware.version, firmware.panelVersion)
+      .set(monitor.OA_Humidity);
     supplyFlowGauge
       .labels(firmware.version, firmware.panelVersion)
       .set(monitor.supplyFlow);
